@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'sanctum' => [
+            'driver' => 'session',
+            'provider' => 'members',
+        ],
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'members',
+        ],
     ],
 
     /*
@@ -69,6 +77,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'members' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Member::class,
+        ],
     ],
 
     /*

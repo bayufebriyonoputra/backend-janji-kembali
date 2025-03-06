@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Sanctum\PersonalAccessToken;
 use Laravel\Sanctum\Sanctum;
@@ -21,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+        Response::macro('api', function(int $statusCode = 200, string $message = 'Success', $data = null){
+            return response()->json([
+                'status_code' => $statusCode,
+                'message' => $message,
+                'data' => $data,
+            ], $statusCode);
+        });
     }
 }
