@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\Auth\Auth;
 use App\Http\Middleware\JwtVerify;
 use Illuminate\Http\Request;
@@ -16,4 +17,7 @@ Route::get('/me', [Auth::class, 'me'])->middleware(JwtVerify::class);
 Route::post('/logout', [Auth::class, 'logout'])->middleware(JwtVerify::class);
 
 // Products
+Route::middleware([JwtVerify::class])->group(function() {
+});
+Route::get('/products', [ProductApiController::class, 'getAllProduct']);
 
