@@ -32,8 +32,7 @@ class Auth extends Controller
 
         return Response::api(data: [
             'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->guard('api')->factory()->getTTL() * 60
+            'token_type' => 'bearer'
         ]);
     }
 
@@ -62,7 +61,6 @@ class Auth extends Controller
         $res = [
             'token' => $token,
             'type' => 'bearer',
-            'expires_in' => auth()->guard('api')->factory()->getTTL() * 60,
             'user_data' => $member
         ];
         return Response::api(data: $res);
