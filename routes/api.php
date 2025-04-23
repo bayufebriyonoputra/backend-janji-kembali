@@ -20,4 +20,5 @@ Route::post('/logout', [Auth::class, 'logout'])->middleware(JwtVerify::class);
 Route::middleware([JwtVerify::class])->group(function() {
 });
 Route::get('/products', [ProductApiController::class, 'getAllProduct']);
+Route::get('/product/{id}', [ProductApiController::class, 'getProductById']);
 

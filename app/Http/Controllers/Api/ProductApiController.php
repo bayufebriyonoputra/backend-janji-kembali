@@ -23,4 +23,15 @@ class ProductApiController extends Controller
 
         return Response::api(data: $product);
     }
+
+    public function getProductById($id)
+    {
+        
+        $product = Product::find($id);
+        if (!$product) {
+            return Response::api(statusCode: 404, data: [], message:"Product Not Found");
+        } else {
+            return Response::api(data: $product);
+        }
+    }
 }
