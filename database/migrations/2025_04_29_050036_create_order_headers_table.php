@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('member_id')->constrained('members', 'id')->cascadeOnDelete();
             $table->enum('status',['new', 'processed', 'done']);
             $table->string('code')->unique();
-            $table->foreignId('payment_id')->constrained('payments', 'id')->cascadeOnDelete();
+            $table->foreignId('payment_id')->nullable()->constrained('payments', 'id')->cascadeOnDelete();
             $table->timestamps();
         });
     }
