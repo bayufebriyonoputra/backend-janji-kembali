@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\OrderApiController;
 use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\Auth\Auth;
 use App\Http\Middleware\JwtVerify;
+use App\Models\OrderHeader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,8 @@ Route::get('/product/{id}', [ProductApiController::class, 'getProductById']);
 //Order
 Route::middleware([JwtVerify::class])->group(function() {
     Route::post('/order', [OrderApiController::class, 'makeOrder']);
+});
+
+Route::get('/testing-api', function(){
+    return OrderHeader::with('details')->get();
 });
