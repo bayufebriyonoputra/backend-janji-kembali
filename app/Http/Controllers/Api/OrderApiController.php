@@ -11,17 +11,19 @@ use Illuminate\Support\Facades\Response;
 class OrderApiController extends Controller
 {
     public function makeOrder(Request $request){
+        $code = uniqid();
         $order = OrderHeader::create([
             'tgl_order' => $request->tgl_order,
             'member_id' => auth()->guard('api')->user()->id,
             'status' => 'new',
-            'code' => uniqid(),
+            'code' => $code,
             //TODO: Add implementation of payment id later
         ]);
 
         $details = collect($request->detail);
-        $details = $details->map(function ($item) use ($order){
+        $details = $details->map(function ($item) use ($order, $request){
             $item['header_id'] = $order->id;
+            $item['subtotal'] = $request->price * $request->qty;
             return $item;
         });
 
@@ -29,6 +31,6 @@ class OrderApiController extends Controller
             OrderDetail::create($item);
         });
 
-        return Response::api(data:[], message:'order berhasil dibuat');
+        return Response::api(data:['code' => uniqid()], message:'order berhasil dibuat');
     }
 }
