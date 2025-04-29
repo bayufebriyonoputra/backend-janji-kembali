@@ -26,11 +26,12 @@ class ProductApiController extends Controller
 
     public function getProductById($id)
     {
-        
+
         $product = Product::find($id);
         if (!$product) {
             return Response::api(statusCode: 404, data: [], message:"Product Not Found");
         } else {
+            $product->image = asset('storage/'. $product->image);
             return Response::api(data: $product);
         }
     }
