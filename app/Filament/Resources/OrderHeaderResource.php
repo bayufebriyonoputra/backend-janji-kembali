@@ -55,6 +55,9 @@ class OrderHeaderResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')->badge(),
+
+                Tables\Columns\TextColumn::make('jenis_pembayaran')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('code')
                     ->searchable(),
                 // Tables\Columns\TextColumn::make('payment_id')

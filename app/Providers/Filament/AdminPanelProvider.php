@@ -53,6 +53,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->brandName('Janji Kembali')
+            ->brandLogo(asset('image/img_janjikembali.png'))
+            ->brandLogoHeight('2rem');
     }
 }

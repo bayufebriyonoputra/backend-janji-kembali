@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BannerApiController;
 use App\Http\Controllers\Api\OrderApiController;
 use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\Auth\Auth;
@@ -28,6 +29,11 @@ Route::middleware([JwtVerify::class])->group(function() {
     Route::post('/order', [OrderApiController::class, 'makeOrder']);
 });
 
+// banner
+Route::get('/banners', [BannerApiController::class, 'list']);
+
 Route::get('/testing-api', function(){
     return OrderHeader::with('details')->get();
 });
+
+

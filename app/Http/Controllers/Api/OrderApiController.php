@@ -16,7 +16,8 @@ class OrderApiController extends Controller
             'tgl_order' => $request->tgl_order,
             'member_id' => auth()->guard('api')->user()->id,
             'status' => 'new',
-            'code' => $code,
+            'code' => $request->order_ref,
+            'jenis_pembayaran' => $request->jenis_pembayaran, // Assuming jenis_pembayaran is passed in the request
             //TODO: Add implementation of payment id later
         ]);
 
